@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e31b23">
+<title>Lesotho Race Calendar 2026</title>
+<style>
+:root{--red:#e31b23;--black:#090909;--white:#fff;--bg:#f4f4f4;--muted:#6b6b6b;--line:#ddd}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#111;font-family:Arial,Helvetica,sans-serif}
+header{background:var(--black);color:#fff;border-bottom:6px solid var(--red);padding:24px 16px 20px}
+.wrap{max-width:1050px;margin:auto}.tag{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff}
+h1{margin:6px 0;font-size:30px}.intro{margin:0;color:#ddd;font-size:14px}
+.toolbar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:9px;position:sticky;top:8px;z-index:10;box-shadow:0 4px 15px #00000010}
+input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:9px;background:#fff;font-size:14px;outline:none}
+input:focus,select:focus{border-color:var(--red)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
+.stat{background:#fff;border:1px solid var(--line);border-left:5px solid var(--red);border-radius:11px;padding:11px}.stat b{display:block;font-size:22px}.stat span{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:13px;padding-bottom:30px}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 3px 12px #0000000b}
+.cardtop{background:var(--black);color:#fff;padding:13px;display:flex;justify-content:space-between;gap:10px}
+.cardtop h2{font-size:17px;line-height:1.25;margin:0 0 5px}.location{font-size:12px;color:#ddd}
+.date{background:var(--red);border-radius:9px;min-width:58px;height:58px;text-align:center;padding:7px}.date b{font-size:22px;display:block}.date small{font-size:10px;font-weight:bold}
+.body{padding:13px}.distances{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}.pill{font-size:11px;font-weight:700;background:#eee;border-radius:99px;padding:6px 8px}.pill.red{background:var(--red);color:#fff}
+.info{border-top:1px solid var(--line);padding-top:9px;display:grid;gap:7px}.row{display:flex;justify-content:space-between;gap:10px;font-size:12px}.label{color:var(--muted)}.value{text-align:right;font-weight:700}
+.deadline{margin-top:11px;padding:9px;border-radius:8px;background:#f7f7f7;font-size:12px}.closed{color:var(--red);font-weight:800}.tbc{color:#555}
+.empty{grid-column:1/-1;background:#fff;border-radius:14px;padding:45px;text-align:center;color:var(--muted)}
+footer{font-size:11px;color:var(--muted);padding:5px 0 35px}
+@media(max-width:650px){.toolbar{grid-template-columns:1fr;position:static}.grid{grid-template-columns:1fr}header{padding:20px 14px}h1{font-size:27px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="tag">2026 Running Calendar</div>
+<h1>🏃 Lesotho Race Calendar</h1>
+<p class="intro">Upcoming races, locations, distances, entry fees and registration deadlines.</p>
+</div></header>
+
+<main class="wrap">
+<div class="toolbar">
+<input id="search" placeholder="Search race or location…">
+<select id="month"><option value="">All months</option></select>
+<select id="distance"><option value="">All distances</option><option>5km</option><option>10km</option><option>21km</option><option>42km</option></select>
+</div>
+
+<div class="stats">
+<div class="stat"><b id="shown">0</b><span>Races shown</span></div>
+<div class="stat"><b id="next">—</b><span>Next race</span></div>
+<div class="stat"><b id="priced">0</b><span>Races with fees listed</span></div>
+</div>
+
+<div id="grid" class="grid"></div>
+<footer>Information imported from the uploaded Excel workbook. Please confirm final race details, fees and deadlines with the organisers before registering.</footer>
+</main>
+
+<script>
+const races=[{"no": 1, "month": "September 2026", "name": "Lekhalong La Baroa Annual Run", "date": "2026-09-05 00:00:00", "location": "Lesotho, Nazareth", "5km": "250", "10km": "300", "21km": "350", "42km": "", "deadline": "closed"}, {"no": 2, "month": "September 2026", "name": "ACC 10KM Run your city", "date": "2026-09-13 00:00:00", "location": "Lesotho,  Maseru", "5km": "", "10km": "", "21km": "", "42km": "", "deadline": "closed"}, {"no": 3, "month": "October 2026", "name": "Minet Independence Marathon", "date": "2026-10-03 00:00:00", "location": "Lesotho, Thaba Bosiu", "5km": "320", "10km": "340", "21km": "370", "42km": "400", "deadline": "Closed"}, {"no": 4, "month": "October 2026", "name": "Avani Fit Marathon", "date": "2026-10-17 00:00:00", "location": "Maseru", "5km": "295", "10km": "330", "21km": "370", "42km": "430", "deadline": "2026-09-30 00:00:00"}, {"no": 5, "month": "October 2026", "name": "ABSA Run Your City", "date": "2026-10-25 00:00:00", "location": "South Africa, Bloemfontein", "5km": "", "10km": "255", "21km": "", "42km": "", "deadline": "tbc"}, {"no": 6, "month": "October 2026", "name": "Hillbusterz Half Marathon", "date": "2026-10-31 00:00:00", "location": "Maseru", "5km": "240", "10km": "290", "21km": "340", "42km": "", "deadline": "tbc"}, {"no": 7, "month": "November 2026", "name": "The Battle of Qalabane Marathon", "date": "2026-11-07 00:00:00", "location": "Lesotho, Mafeteng", "5km": "tbc", "10km": "tbc", "21km": "tbc", "42km": "tbc", "deadline": "tbc"}, {"no": 8, "month": "November 2026", "name": "Northridge Mall Marathon", "date": "2026-11-07 00:00:00", "location": "Bloemfontein", "5km": "80", "10km": "160", "21km": "200", "42km": "260", "deadline": "tbc"}, {"no": 9, "month": "November 2026", "name": "Lerotholi Run", "date": "2026-11-21 00:00:00", "location": "Lesotho, Matsieng", "5km": "210", "10km": "240", "21km": "290", "42km": "", "deadline": "2026-10-31 00:00:00"}, {"no": 10, "month": "December 2026", "name": "Moyeni Marathon", "date": "2026-12-05 00:00:00", "location": "Lesotho, Quthing", "5km": "200", "10km": "250", "21km": "350", "42km": "", "deadline": "tbc"}, {"no": 11, "month": "December 2026", "name": "Mabita Series Run", "date": "2026-12-19 00:00:00", "location": "Lesotho, Butha Buthe", "5km": "220", "10km": "250", "21km": "300", "42km": "", "deadline": "2026-12-05 00:00:00"}];
+const $=id=>document.getElementById(id);
+
+function dateObj(v){const d=new Date(v+"T00:00:00");return isNaN(d)?null:d}
+function monthLabel(r){
+  const d=dateObj(r.date); return d?d.toLocaleString("en-GB",{month:"long",year:"numeric"}):r.month;
+}
+function money(v){
+  if(!v)return "";
+  return /^[0-9]+(?:\.0)?$/.test(String(v)) ? "M"+String(v).replace(/\.0$/,"") : String(v);
+}
+function lowest(r){
+  const nums=["5km","10km","21km","42km"].map(k=>parseFloat(r[k])).filter(n=>!isNaN(n));
+  return nums.length?Math.min(...nums):null;
+}
+function esc(x){return String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+function card(r){
+ const d=dateObj(r.date), day=d?d.getDate():"—", mon=d?d.toLocaleString("en-GB",{month:"short"}):"";
+ const chips=["5km","10km","21km","42km"].filter(k=>r[k] && r[k].toLowerCase()!=="tbc").map(k=>`<span class="pill">${k}: ${esc(money(r[k]))}</span>`).join("");
+ const tbc=["5km","10km","21km","42km"].filter(k=>String(r[k]).toLowerCase()==="tbc").length;
+ const nofee=chips==="" && !tbc;
+ const extras=(tbc?`<span class="pill">Fees TBC</span>`:"")+(nofee?`<span class="pill">Fee not listed</span>`:"");
+ const dl=String(r.deadline||"").toLowerCase();
+ const deadlineClass=dl==="closed"?"closed":(dl==="tbc"?"tbc":"");
+ return `<article class="card">
+ <div class="cardtop"><div><h2>${esc(r.name)}</h2><div class="location">📍 ${esc(r.location)}</div></div>
+ <div class="date"><b>${day}</b><small>${mon}</small></div></div>
+ <div class="body"><div class="distances">${chips}${extras}</div>
+ <div class="info">
+ <div class="row"><span class="label">Race date</span><span class="value">${esc(d?d.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}):r.date)}</span></div>
+ <div class="row"><span class="label">Month</span><span class="value">${esc(monthLabel(r))}</span></div>
+ <div class="row"><span class="label">Lowest listed fee</span><span class="value">${lowest(r)!==null?"M"+lowest(r):"TBC"}</span></div>
+ </div>
+ <div class="deadline"><span>Entry deadline: </span><strong class="${deadlineClass}">${esc(r.deadline||"TBC")}</strong></div>
+ </div></article>`;
+}
+
+function render(){
+ const q=$("search").value.toLowerCase().trim(), m=$("month").value, dist=$("distance").value;
+ let a=races.filter(r=>{
+   const text=(r.name+" "+r.location+" "+r.month).toLowerCase();
+   return (!q||text.includes(q))&&(!m||monthLabel(r)===m)&&(!dist||r[dist] && String(r[dist]).toLowerCase()!=="n/a");
+ });
+ a.sort((x,y)=>new Date(x.date)-new Date(y.date));
+ $("grid").innerHTML=a.length?a.map(card).join(""):`<div class="empty">No races match your search or filters.</div>`;
+ $("shown").textContent=a.length;
+ const upcoming=a.filter(r=>dateObj(r.date)&&dateObj(r.date)>=new Date(new Date().toDateString()));
+ $("next").textContent=upcoming.length?upcoming[0].name:"—";
+ $("priced").textContent=a.filter(r=>lowest(r)!==null).length;
+}
+
+[...new Set(races.map(monthLabel))].forEach(m=>{let o=document.createElement("option");o.value=m;o.textContent=m;$("month").appendChild(o)});
+$("search").addEventListener("input",render);
+$("month").addEventListener("change",render);
+$("distance").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
